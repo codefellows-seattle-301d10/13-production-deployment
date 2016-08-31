@@ -13,7 +13,6 @@
               // NOTE: since the 'data' paramter comes back as an
               // array of objects, we can reassign allRepos below.
               reposObj.allRepos = data;
-              console.log(data);
             }),
      $.get('/github.com/users/patci/followers' +
             '?per_page=5' +
