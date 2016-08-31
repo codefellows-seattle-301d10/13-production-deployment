@@ -7,20 +7,28 @@
   reposObj.requestRepos = function(callback) {
     // NOTE: refactor this request into an $.ajax call
     $.when(
-      $.get('https://api.github.com/users/codefellows-seattle-301d10/repos' +
+     $.ajax({
+       url: 'https://api.github.com/users/codefellows-seattle-301d9/repos' +
             '?per_page=10' +
-            '&sort=updatd')
-            .done(function(data) {
-              reposObj.allRepos = data;
-            }),
-      $.get('/github.'+
-            '?per_page=10' +
-            '&sort=updatd')
-            .done(function(data) {
-              reposObj.allRepos = data;
-            })
-           // NOTE: since the 'data' paramter comes back as an
-           // array of objects, we can reassign allRepos below.
+            '&sort=updated',
+       type: 'GET',
+       headers: { 'Authorization': 'token ' + githubToken },
+       success: function(data) {
+         // NOTE: since the 'data' paramter comes back as an
+         // array of objects, we can reassign allRepos below.
+         reposObj.allRepos = data;
+       }
+     }),
+     $.ajax({
+       url: 'https://api.github.com/users/patci/followers' +
+            '?per_page=5' +
+            '&sort=updated',
+       type: 'GET',
+       headers: { 'Authorization': 'token ' + githubToken },
+       success: function(data) {
+         reposObj.followers = data;
+       }
+     })
     ).done(callback);
   };
 
