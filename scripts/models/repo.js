@@ -7,13 +7,11 @@
   reposObj.requestRepos = function(callback) {
     // NOTE: refactor this request into an $.ajax call
     $.when(
-     $.ajax({
-       url: 'https://api.github.com/users/codefellows-seattle-301d9/repos' +
-            '?per_page=10' +
-            '&sort=updated',
-       type: 'GET',
-       headers: { 'Authorization': 'token ' + githubToken },
-       success: function(data) {
+      $.get('https://api.github.com/users/codefellows-seattle-301d10/repos' +
+      '?per_page=10' +
+      '&sort=updatd')
+      .done(function(data))
+    }
          // NOTE: since the 'data' paramter comes back as an
          // array of objects, we can reassign allRepos below.
          reposObj.allRepos = data;
