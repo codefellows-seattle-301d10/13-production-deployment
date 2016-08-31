@@ -10,8 +10,14 @@
       $.get('https://api.github.com/users/codefellows-seattle-301d10/repos' +
       '?per_page=10' +
       '&sort=updatd')
-      .done(function(data))
-    }
+      .done(function(data) {
+        reposeObj.allRepos = data;
+      }),
+      $.get('/github.'+
+      '?per_page=10' +
+      '&sort=updatd')
+      .done(function(data) {
+      )},
          // NOTE: since the 'data' paramter comes back as an
          // array of objects, we can reassign allRepos below.
          reposObj.allRepos = data;
