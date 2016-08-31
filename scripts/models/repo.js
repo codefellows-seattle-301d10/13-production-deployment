@@ -13,7 +13,7 @@
             .done(function(data) {
               reposObj.allRepos = data;
             }),
-     $.get('github/users/patci/followers' +
+     $.get('/github/users/patci/followers' +
             '?per_page=5' +
             '&sort=updated')
             .done(function(data){
